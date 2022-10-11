@@ -19,6 +19,9 @@ RUN install-php-extensions pdo_pgsql pgsql sqlite3 gd sockets exif zip mbstring 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Node, NPM, Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt install -y nodejs && npm -g install yarn --unsafe-perm
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
