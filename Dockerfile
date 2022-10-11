@@ -22,4 +22,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+COPY start.sh /usr/local/bin/start
 RUN a2enmod rewrite
