@@ -26,14 +26,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-steps:
-  - uses: actions/checkout@v1.0
-    name: Check out code
+      - uses: actions/checkout@v1.0
+        name: Check out code
 
-  - uses: mr-smithers-excellent/docker-build-push@v3
-    name: Build & push Docker image
-    with:
-      image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql
-      registry: docker.io
-      username: ${{ secrets.DOCKER_USERNAME }}
-      password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image
+        with:
+          image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
