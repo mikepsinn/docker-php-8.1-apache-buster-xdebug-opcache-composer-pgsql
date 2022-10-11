@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    container_name: app
+    image: curedao/docker-php-8.1-apache-buster-xdebug-opcache-composer-pgsql:${TAG}
+    build:
+      context: ./
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8081:80"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    env_file:
+      - .env
