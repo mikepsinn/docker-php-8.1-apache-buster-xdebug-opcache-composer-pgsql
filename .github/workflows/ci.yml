@@ -17,6 +17,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v3
         name: Build & push Docker image
         with:
+          addLatest: true
           image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
