@@ -2,7 +2,7 @@ version: '3'
 services:
   app:
     container_name: app
-    image: curedao/docker-php-8.1-apache-buster-xdebug-opcache-composer-pgsql:${TAG}
+    image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql:${TAG}
     build:
       context: ./
     volumes:
