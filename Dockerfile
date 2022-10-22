@@ -14,7 +14,8 @@ COPY xdebug.ini /etc/php/8.1/cli/conf.d/99-xdebug.ini
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions
-RUN install-php-extensions pdo_pgsql pgsql sqlite3 gd sockets exif zip mbstring xdebug intl pdo pdo_mysql
+RUN install-php-extensions pdo_pgsql pgsql gd sockets exif zip xdebug intl pdo pdo_mysql gmp pcntl
+# RUN install-php-extensions sqlite3 mbstring # Already installed
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
