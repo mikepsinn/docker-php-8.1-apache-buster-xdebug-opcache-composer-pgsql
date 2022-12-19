@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
     echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | tee /etc/apt/sources.list.d/doppler-cli.list && \
     apt-get update && \
     apt-get -y install doppler git htop wget
+    
+# Needed for phantomjs
+RUN apt-get install -y libfontconfig
 
 RUN docker-php-ext-configure opcache --enable-opcache
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
