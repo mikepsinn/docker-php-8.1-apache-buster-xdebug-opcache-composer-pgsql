@@ -14,10 +14,10 @@ jobs:
       - uses: actions/checkout@v2
         name: Check out code
 
-      - uses: mr-smithers-excellent/docker-build-push@v3
+      - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
-          addLatest: true
+          tags: 1.0.6, latest
           image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
