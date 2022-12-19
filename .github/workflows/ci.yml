@@ -20,5 +20,6 @@ jobs:
           tags: 1.0.6, latest
           image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql
           registry: docker.io
+          dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
