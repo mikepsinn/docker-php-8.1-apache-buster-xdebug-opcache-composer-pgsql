@@ -5,7 +5,7 @@ on:
     branches:
       - "master"
     tags:
-      - "1.0.6"
+      - "*"
 
 jobs:
   docker:
@@ -17,7 +17,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
-          tags: 1.0.6, latest
+          tags: 1.0.8, latest
           image: curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql
           registry: docker.io
           dockerfile: Dockerfile
