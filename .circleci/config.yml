@@ -25,7 +25,7 @@ jobs:
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker build -t $IMAGE_NAME .
             docker push $IMAGE_NAME
-            docker push "$IMAGE_NAME:1.1.0"
+            docker push "$IMAGE_NAME:1.1.1"
 #            docker push $IMAGE_NAME:latest
 
 workflows:
