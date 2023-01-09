@@ -48,7 +48,11 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
     curl -sLf --retry 3 --tlsv1.2 --proto "=https" 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | apt-key add - && \
     echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | tee /etc/apt/sources.list.d/doppler-cli.list && \
     apt-get update && \
-    apt-get -y install doppler git htop wget
+    apt-get -y --no-install-recommends install doppler \
+                                                git \
+                                                htop \
+                                                wget \
+                                                supervisor
 
 # Needed for phantomjs
 RUN apt-get install bzip2 libfontconfig -y
