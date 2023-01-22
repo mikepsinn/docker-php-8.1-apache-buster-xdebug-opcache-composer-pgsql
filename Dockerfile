@@ -79,6 +79,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Node, NPM, Yarn
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt install -y nodejs && npm -g install yarn --unsafe-perm
 
+RUN git clone https://github.com/tideways/php-profiler-extension.git \
+    && cd php-profiler-extension \
+    && phpize \
+    && ./configure \
+    && make && make install
+
+RUN echo "extension=tideways_xhprof.so" >> /usr/local/etc/php/conf.d/tideways_xhprof.ini
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
