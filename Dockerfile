@@ -80,7 +80,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt install -y nodejs && npm -g install yarn --unsafe-perm
 
 # https://app.datadoghq.com/ci/setup/test?language=junit-xml
-npm install -g @datadog/datadog-ci
+RUN npm install -g @datadog/datadog-ci
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
