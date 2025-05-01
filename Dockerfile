@@ -29,7 +29,15 @@ RUN apt update && apt install -y \
     xdg-utils \
     mplayer \
     apt-utils \
-    wget
+    wget \
+    # Added dependencies for Laravel extensions & PECL
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    curl \
+    build-essential # For PECL redis build
 
 # Chrome
 RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" && \
@@ -70,7 +78,7 @@ COPY xdebug.ini /etc/php/8.1/cli/conf.d/99-xdebug.ini
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions
-RUN install-php-extensions pdo_pgsql pgsql gd sockets exif zip xdebug intl pdo pdo_mysql gmp pcntl
+RUN install-php-extensions pdo_pgsql pgsql gd sockets exif zip xdebug intl pdo pdo_mysql gmp pcntl redis bcmath
 # RUN install-php-extensions sqlite3 mbstring # Already installed
 
 # Install composer
@@ -82,8 +90,15 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt install -y
 # https://app.datadoghq.com/ci/setup/test?language=junit-xml
 RUN npm install -g @datadog/datadog-ci
 
+# Clean up build dependencies for PECL
+RUN apt-get purge -y --auto-remove build-essential
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY start.sh /usr/local/bin/start
+
+# Apache Config
 RUN a2enmod rewrite
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN echo "LimitRequestFieldSize 16380" >> /etc/apache2/apache2.conf
